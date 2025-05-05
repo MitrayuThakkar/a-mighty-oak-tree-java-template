@@ -3,12 +3,25 @@
  */
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+public class AppTest {
+    public static void main(String[] args) {
+        Squirrel testSquirrel = new Squirrel("Testy");
+        Node root = new Node(testSquirrel);
 
-class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        assert root.getData().getName().equals("Testy") : "Root name should be Testy";
+        assert root.left() == null : "Left child should be null initially";
+        assert root.right() == null : "Right child should be null initially";
+
+        Node left = new Node(new Squirrel("Lefty"));
+        Node right = new Node(new Squirrel("Righty"));
+
+        root.set_left(left);
+        root.set_right(right);
+
+        assert root.left().getData().getName().equals("Lefty") : "Left child name mismatch";
+        assert root.right().getData().getName().equals("Righty") : "Right child name mismatch";
+
+        System.out.println("All tests passed!");
     }
 }
+
